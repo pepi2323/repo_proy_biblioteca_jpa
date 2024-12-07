@@ -76,7 +76,6 @@ public class Ejemplar {
                 "id=" + id +
                 ", libro=" + libro.getTitulo() +
                 ", estado='" + estado + '\'' +
-                ", prestamos=" + prestamos +
-                '}';
+                "\n}";
     }
 }

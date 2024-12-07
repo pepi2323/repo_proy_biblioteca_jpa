@@ -87,6 +87,6 @@ public class Prestamo {
                 ", ejemplar=" + ejemplar.getId() +
                 ", fechaInicio=" + fechaInicio +
                 ", fechaDevolucion=" + fechaDevolucion +
-                '}';
+                "\n}";
     }
 }
