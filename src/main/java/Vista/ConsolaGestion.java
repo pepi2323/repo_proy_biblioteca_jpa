@@ -2,17 +2,16 @@ package Vista;
 import Controlador.GestionPrestamo;
 import Controlador.GestionUsuarios;
 
-import java.sql.SQLException;
 import java.util.Scanner;
 
-public class Consola {
+public class ConsolaGestion {
     Scanner teclado;
     GestionUsuarios gestorUsuarios;
     GestionPrestamo gestorPrestamos;
     int idUsuario;
     int idEjemplar;
 
-    public Consola(){
+    public ConsolaGestion(){
         teclado = new Scanner(System.in);
         gestorUsuarios = new GestionUsuarios();
         gestorPrestamos = new GestionPrestamo();
