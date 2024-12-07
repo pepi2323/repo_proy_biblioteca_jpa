@@ -4,51 +4,57 @@ import jakarta.persistence.*;
 
 import java.util.List;
 
-public class DAOGenerico {
+public class DAOGenerico<T, ID> {
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("unidad-biblioteca");
     EntityManager em = emf.createEntityManager();
     EntityTransaction tx = em.getTransaction();
+    Class<T> clase;
+    Class<ID> claseID;
 
-    public DAOGenerico(){
+    public DAOGenerico(Class<T> clase, Class<ID> claseID){
+        this.clase=clase;
+        this.claseID=claseID;
     }
 
     //INSERT
-    public boolean addUsuario(Usuario usuario){
+    public boolean add(T objeto){
         tx.begin();
-        em.persist(usuario);
+        em.persist(objeto);
         tx.commit();
         return false;
     }
 
     //SELECT WHERE ID
-    public Usuario getUsuarioById(int id){
-        return em.find(Usuario.class, id);
+    public T getById(ID id){
+        return em.find(clase, id);
     }
 
-    //SELECT WHERE DNI
-    public Usuario getUsuarioByDni(String dni){
-        Query consulta = em.createQuery("SELECT u from Usuario u WHERE u.dni=:dni");
-        consulta.setParameter("dni",dni);
-        return (Usuario) consulta.getSingleResult();
-    }
     //SELECT *
-    public List<Usuario> getAllUsuarios(){
-        return em.createQuery("SELECT u FROM Usuario u").getResultList();
+    public List<Usuario> getAll(){
+        return em.createQuery("SELECT c from "+ clase.getName()+" c").getResultList();
     }
 
     //UPDATE
-    public Usuario updateUsuario(Usuario usuario){
+    public T update(T objeto){
         tx.begin();
-        usuario = em.merge(usuario);
+        objeto = em.merge(objeto);
         tx.commit();
-        return usuario;
+        return objeto;
     }
-    //DELETE WHERE usuario.id
-    public boolean deleteUsuario(Usuario usuario){
+    //DELETE WHERE objeto.id
+    public boolean deleteUsuario(T objeto){
         tx.begin();
-        em.remove(usuario);
+        em.remove(objeto);
         tx.commit();
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "DAOGenerico{" +
+                "clase=" + clase.getSimpleName() +
+                "clase=" + clase.getName() +
+                ", claseID=" + claseID +
+                '}';
+    }
 }
