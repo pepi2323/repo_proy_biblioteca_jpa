@@ -6,12 +6,19 @@ import Modelo.Prestamo;
 import Modelo.Usuario;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class GestionPrestamo {
 
-    public DAOGenerico<Ejemplar,Integer> daoejemplares = new DAOGenerico<>(Ejemplar.class,Integer.class);
-    public DAOGenerico<Usuario,Integer> daousuario = new DAOGenerico<>(Usuario.class,Integer.class);
-    public DAOGenerico<Prestamo,Integer> daoprestamo = new DAOGenerico<>(Prestamo.class,Integer.class);
+    public DAOGenerico<Ejemplar,Integer> daoejemplares;
+    public DAOGenerico<Usuario,Integer> daousuario;
+    public DAOGenerico<Prestamo,Integer> daoprestamo;
+
+    public GestionPrestamo(){
+        daoejemplares = new DAOGenerico<>(Ejemplar.class,Integer.class);
+        daousuario = new DAOGenerico<>(Usuario.class,Integer.class);
+        daoprestamo = new DAOGenerico<>(Prestamo.class,Integer.class);
+    }
 
     public boolean prestarEjemplar(int  idUsuario, int idEjemplar){
         Usuario usuario = daousuario.getById(idUsuario);
@@ -36,6 +43,11 @@ public class GestionPrestamo {
             System.out.println("Ejemplar no disponible o dañado");
         }
         return false;
+    }
+
+    public List<Prestamo> obtenerPrestamosUsuario(int idUsuario){
+        daousuario.getById(idUsuario).getPrestamos();
+        return null;
     }
 
     public boolean devolverEjemplar(int idPrestamo){

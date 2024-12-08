@@ -30,7 +30,7 @@ public class ConsolaGestionUNormal {
     public int realizarOpcion(int opcion) {
         switch (opcion) {
             case 1:{
-                System.out.println(gestorPrestamos.daoprestamo.getAll());
+                System.out.println(gestorPrestamos.obtenerPrestamosUsuario(this.idUsuario));
                 break;
             }
             case 2:
