@@ -8,8 +8,6 @@ import java.util.Scanner;
 
 public class GestionUsuarios {
     public DAOUsuario daousuario;
-    String dni;
-    String password;
 
     public GestionUsuarios(){
         this.daousuario = new DAOUsuario();
@@ -23,14 +21,6 @@ public class GestionUsuarios {
         else {
             return null;
         }
-    }
-
-    public void pedirDatos(){
-        Scanner teclado = new Scanner(System.in);
-        System.out.print("Introduce el DNI: ");
-        this.dni = teclado.nextLine();
-        System.out.print("Introduce la contraseña: ");
-        this.password = teclado.nextLine();
     }
 
 }

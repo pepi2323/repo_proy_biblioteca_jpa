@@ -4,14 +4,14 @@ import Controlador.GestionUsuarios;
 
 import java.util.Scanner;
 
-public class ConsolaGestion {
+public class ConsolaGestionUAdmin {
     Scanner teclado;
     GestionUsuarios gestorUsuarios;
     GestionPrestamo gestorPrestamos;
     int idUsuario;
     int idEjemplar;
 
-    public ConsolaGestion(){
+    public ConsolaGestionUAdmin(){
         teclado = new Scanner(System.in);
         gestorUsuarios = new GestionUsuarios();
         gestorPrestamos = new GestionPrestamo();
