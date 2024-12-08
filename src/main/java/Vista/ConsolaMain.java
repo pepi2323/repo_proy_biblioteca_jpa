@@ -13,34 +13,31 @@ public class ConsolaMain {
     //opción general de selección
 
     int opcion=0;
+    String tipo_usuario="";
 
     public ConsolaMain(){
         teclado = new Scanner(System.in);
     }
 
-    public int mostrarMenu(){
+    public void mostrarMenu(){
         System.out.println("\nSeleccione su opción:");
-        System.out.println("1. Iniciar sesión");
+        System.out.println("1. Iniciar sesión en la aplicación");
         System.out.println("-1. Salir de la aplicación");
         System.out.print("Opción: ");
-        int opcion = teclado.nextInt();
-        return opcion;
+        opcion = teclado.nextInt();
     }
 
-    public int realizarOpcion(int opcion) {
+    public void realizarOpcion(int opcion) {
         switch (opcion) {
             case 1:{
-                opcion = consola_login.ejecutar();
-                break;
-            }
-            //usuario admin
-            case 2: {
-                consola_u_admin.ejecutar();
-                break;
-            }
-            //usuario normal
-            case 3: {
-                consola_u_normal.ejecutar();
+                tipo_usuario=consola_login.ejecutar();
+                if(tipo_usuario.equals("normal"))
+                {
+                    consola_u_normal.ejecutar();
+                }
+                if(tipo_usuario.equals("administrador")){
+                    consola_u_admin.ejecutar();
+                }
                 break;
             }
             case -1: {
@@ -51,14 +48,10 @@ public class ConsolaMain {
                 System.out.println("Opción inválida. Intente de nuevo.");
             }
         }
-        return opcion;
     }
 
     public void ejecutar() {
-        int opcion = mostrarMenu();
-        while(opcion!=-1){
-            realizarOpcion(opcion);
-            opcion = mostrarMenu();
-        }
+        mostrarMenu();
+        realizarOpcion(opcion);
     }
 }

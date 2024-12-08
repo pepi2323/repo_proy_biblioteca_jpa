@@ -22,17 +22,11 @@ public class ConsolaLogin {
         return gestorUsuarios.login(dni,password);
     }
 
-   public int ejecutar() {
+   public String ejecutar() {
         String resultadoLogin = mostrarMenu();
         while(!resultadoLogin.equals("administrador") && !resultadoLogin.equals("normal")){
             resultadoLogin = mostrarMenu();
         }
-        if(resultadoLogin.equals("administrador")){
-            return 2;
-        }
-        if(resultadoLogin.equals("normal")){
-            return 3;
-        }
-        return -1;
+        return resultadoLogin;
     }
 }
