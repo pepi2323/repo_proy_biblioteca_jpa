@@ -35,11 +35,13 @@ public class ConsolaMain {
             }
             //usuario admin
             case 2: {
-
+                consola_u_admin.ejecutar();
+                break;
             }
             //usuario normal
             case 3: {
-
+                consola_u_normal.ejecutar();
+                break;
             }
             case -1: {
                 System.out.println("Saliendo del programa...");

@@ -20,7 +20,7 @@ public class GestionPrestamo {
         // que no tenga más de 3 préstamos en activo
         // y que el libro esté disponible
         if(usuario.getPenalizacionHasta()==null
-                && usuario.getPrestamosActivos() < 100
+                && usuario.getPrestamosActivos() < 3
                 && ejemplar.getEstado().equals("Disponible")
         ){
             ejemplar.setEstado("Prestado");
@@ -38,7 +38,8 @@ public class GestionPrestamo {
         return false;
     }
 
-    public boolean devolverEjemplar(Prestamo prestamo){
+    public boolean devolverEjemplar(int idPrestamo){
+        Prestamo prestamo = daoprestamo.getById(idPrestamo);
         Usuario usuario = prestamo.getUsuario();
         Ejemplar ejemplar = prestamo.getEjemplar();
         LocalDate fecha_actual = LocalDate.now();
