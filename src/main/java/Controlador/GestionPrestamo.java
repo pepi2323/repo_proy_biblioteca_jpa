@@ -62,9 +62,11 @@ public class GestionPrestamo {
         LocalDate fecha_actual = LocalDate.now();
         if(prestamo.getFechaDevolucion().isAfter(fecha_actual)){
             LocalDate fecha_penalizacion_actual = usuario.getPenalizacionHasta();
+            //en caso de que ya esté penalizado
             if(fecha_penalizacion_actual!=null){
                 usuario.setPenalizacionHasta(fecha_penalizacion_actual.plusDays(15));
             }
+            //en caso de que no estuviera antes penalizado
             else {
                 usuario.setPenalizacionHasta(LocalDate.now().plusDays(15));
             }
