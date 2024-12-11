@@ -13,10 +13,10 @@ public class GestionUsuarios {
         this.daousuario = new DAOUsuario();
     }
 
-    public String login(String dni, String password){
+    public Usuario login(String dni, String password){
         Usuario usuario = daousuario.getUsuarioByDni(dni);
         if(usuario.getPassword().equals(password)){
-            return usuario.getTipo();
+            return usuario;
         }
         else {
             return null;

@@ -2,8 +2,10 @@ package Vista;
 import Controlador.GestionPrestamo;
 import Controlador.GestionUsuarios;
 import Modelo.Prestamo;
+import Modelo.Usuario;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class ConsolaGestionUNormal {
@@ -12,10 +14,11 @@ public class ConsolaGestionUNormal {
     int idUsuario;
     int idEjemplar;
     int idPrestamo;
-
-    public ConsolaGestionUNormal(){
+    Usuario usuario;
+    public ConsolaGestionUNormal(Usuario usuario){
         teclado = new Scanner(System.in);
         gestorPrestamos = new GestionPrestamo();
+        this.usuario=usuario;
     }
 
     public int mostrarMenu(){
@@ -32,7 +35,7 @@ public class ConsolaGestionUNormal {
     public int realizarOpcion(int opcion) {
         switch (opcion) {
             case 1:{
-                ArrayList<Prestamo> lista = (ArrayList<Prestamo>) gestorPrestamos.obtenerPrestamosUsuario(this.idUsuario);
+                List<Prestamo> lista = gestorPrestamos.obtenerPrestamosUsuario(usuario.getId());
                 if(lista!=null){
                     System.out.println(lista);
                 }

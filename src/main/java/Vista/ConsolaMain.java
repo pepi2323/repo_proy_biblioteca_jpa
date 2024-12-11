@@ -1,5 +1,7 @@
 package Vista;
 
+import Modelo.Usuario;
+
 import java.util.Scanner;
 
 public class ConsolaMain {
@@ -8,8 +10,8 @@ public class ConsolaMain {
 
     //Consolas
     ConsolaLogin consola_login = new ConsolaLogin();
-    ConsolaGestionUNormal consola_u_normal = new ConsolaGestionUNormal();
-    ConsolaGestionUAdmin consola_u_admin = new ConsolaGestionUAdmin();
+    ConsolaGestionUNormal consola_u_normal;
+    ConsolaGestionUAdmin consola_u_admin;
     //opción general de selección
 
     int opcion=0;
@@ -30,12 +32,15 @@ public class ConsolaMain {
     public void realizarOpcion(int opcion) {
         switch (opcion) {
             case 1:{
-                tipo_usuario=consola_login.ejecutar();
+                Usuario usuarioObtenido = consola_login.ejecutar();
+                tipo_usuario=usuarioObtenido.getTipo();
                 if(tipo_usuario.equals("normal"))
                 {
+                    consola_u_normal= new ConsolaGestionUNormal(usuarioObtenido);
                     consola_u_normal.ejecutar();
                 }
                 if(tipo_usuario.equals("administrador")){
+                    consola_u_admin = new ConsolaGestionUAdmin();
                     consola_u_admin.ejecutar();
                 }
                 break;

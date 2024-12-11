@@ -36,7 +36,7 @@ public class Usuario {
     private LocalDate penalizacionHasta;
 
     @OneToMany(mappedBy = "usuario")
-    private List<Prestamo> prestamos = new ArrayList<>();
+    private List<Prestamo> prestamos;
 
     public Usuario(){}
 

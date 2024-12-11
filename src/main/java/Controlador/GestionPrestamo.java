@@ -3,6 +3,7 @@ package Controlador;
 import Modelo.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class GestionPrestamo {
@@ -14,7 +15,7 @@ public class GestionPrestamo {
 
     public static void main(String[] args) {
         GestionPrestamo gp = new GestionPrestamo();
-        System.out.println(gp.daousuario.getById(1).getPrestamos());
+        System.out.println(gp.daousuario.getById(1));
     }
 
     public GestionPrestamo(){
@@ -51,6 +52,7 @@ public class GestionPrestamo {
 
     public List<Prestamo> obtenerPrestamosUsuario(int idUsuario){
         return daousuario.getById(idUsuario).getPrestamos();
+
     }
 
     public boolean devolverEjemplar(int idPrestamo){
@@ -60,7 +62,12 @@ public class GestionPrestamo {
         LocalDate fecha_actual = LocalDate.now();
         if(prestamo.getFechaDevolucion().isAfter(fecha_actual)){
             LocalDate fecha_penalizacion_actual = usuario.getPenalizacionHasta();
-            usuario.setPenalizacionHasta(fecha_penalizacion_actual.plusDays(15));
+            if(fecha_penalizacion_actual!=null){
+                usuario.setPenalizacionHasta(fecha_penalizacion_actual.plusDays(15));
+            }
+            else {
+                usuario.setPenalizacionHasta(LocalDate.now().plusDays(15));
+            }
             ejemplar.setEstado("Disponible");
             daoejemplares.update(ejemplar);
             return true;
