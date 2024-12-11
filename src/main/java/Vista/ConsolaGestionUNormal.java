@@ -1,7 +1,9 @@
 package Vista;
 import Controlador.GestionPrestamo;
 import Controlador.GestionUsuarios;
+import Modelo.Prestamo;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ConsolaGestionUNormal {
@@ -30,7 +32,13 @@ public class ConsolaGestionUNormal {
     public int realizarOpcion(int opcion) {
         switch (opcion) {
             case 1:{
-                System.out.println(gestorPrestamos.obtenerPrestamosUsuario(this.idUsuario));
+                ArrayList<Prestamo> lista = (ArrayList<Prestamo>) gestorPrestamos.obtenerPrestamosUsuario(this.idUsuario);
+                if(lista!=null){
+                    System.out.println(lista);
+                }
+                else{
+                    System.out.println("No hay libros actualmente prestados");
+                }
                 break;
             }
             case 2:

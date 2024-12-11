@@ -1,9 +1,6 @@
 package Controlador;
 
-import Modelo.DAOGenerico;
-import Modelo.Ejemplar;
-import Modelo.Prestamo;
-import Modelo.Usuario;
+import Modelo.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -13,11 +10,18 @@ public class GestionPrestamo {
     public DAOGenerico<Ejemplar,Integer> daoejemplares;
     public DAOGenerico<Usuario,Integer> daousuario;
     public DAOGenerico<Prestamo,Integer> daoprestamo;
+    public DAOGenerico<Libro,String> daoLibro;
+
+    public static void main(String[] args) {
+        GestionPrestamo gp = new GestionPrestamo();
+        System.out.println(gp.daousuario.getById(1).getPrestamos());
+    }
 
     public GestionPrestamo(){
         daoejemplares = new DAOGenerico<>(Ejemplar.class,Integer.class);
         daousuario = new DAOGenerico<>(Usuario.class,Integer.class);
         daoprestamo = new DAOGenerico<>(Prestamo.class,Integer.class);
+        daoLibro = new DAOGenerico<>(Libro.class,String.class);
     }
 
     public boolean prestarEjemplar(int  idUsuario, int idEjemplar){
@@ -46,8 +50,7 @@ public class GestionPrestamo {
     }
 
     public List<Prestamo> obtenerPrestamosUsuario(int idUsuario){
-        daousuario.getById(idUsuario).getPrestamos();
-        return null;
+        return daousuario.getById(idUsuario).getPrestamos();
     }
 
     public boolean devolverEjemplar(int idPrestamo){
